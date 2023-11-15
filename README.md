@@ -389,7 +389,7 @@ The best performance was achieved with the following settings:
 
 In addition to the Linear Regression Model, we implemented a Simple Neural Network for regression in PyTorch, designed to capture complex, non-linear relationships in the data. This model serves as an alternative to Gradient-Boosted Trees (GBT) which are not natively supported in PyTorch.
 
-### Model Architecture
+#### Model Architecture
 
 - The neural network comprises two fully connected (**`nn.Linear`**) layers.
 - The first layer (fc1) transforms the input features to a hidden layer of specified size (**`hidden_size`**), allowing the model to learn intermediate representations of the data.
@@ -397,20 +397,20 @@ In addition to the Linear Regression Model, we implemented a Simple Neural Netwo
 - The second layer (fc2) reduces the hidden layer to a single output value, corresponding to the predicted player value.
 - **`hidden_size`** is a tunable hyperparameter, allowing experimentation with different model complexities.
 
-### Training Process
+#### Training Process
 
 - The model employs the Adam optimizer, known for its efficiency in handling sparse gradients and adaptive learning rate management.
 - Mean Squared Error Loss (MSELoss) is used during training, and the Root Mean Squared Error (RMSE) is calculated for validation, providing a clear measure of prediction accuracy.
 - The model is trained and validated over several epochs, with hyperparameters **`hidden_size`** and learning rate (**`lr`**) being tuned to find the optimal configuration.
 
-### Hyperparameter Tuning
+#### Hyperparameter Tuning
 
 We applied a grid search strategy to explore different values for **`hidden_size`** and **`learning_rate`**. The ranges for these parameters were:
 
 - **`hidden_size`**: 64, 128, 256
 - **`learning_rate`**: 0.001, 0.01, 0.1
 
-### **Results**
+#### **Results**
 
 The outcomes of the hyperparameter tuning are as follows:
 
@@ -426,7 +426,7 @@ The outcomes of the hyperparameter tuning are as follows:
 | 256 | 0.01 | 7.137579348710206 |
 | 256 | 0.1 | 7.521046274417156 |
 
-### **Optimal Parameters**
+#### **Optimal Parameters**
 
 The best results were obtained with the following settings:
 
@@ -434,7 +434,7 @@ The best results were obtained with the following settings:
 - **Best `learning_rate`**: 0.01
 - **Best Validation RMSE**: 7.087015567599116
 
-### **Analysis**
+#### **Analysis**
 
 - The optimal performance was achieved with a **`hidden_size`** of 64 and a **`learning_rate`** of 0.01. This indicates that a relatively smaller hidden layer size combined with a moderate learning rate is the most effective for this dataset.
 - Increasing the **`hidden_size`** did not consistently improve performance, suggesting that a more complex model does not necessarily translate to better results for this task.
