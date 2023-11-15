@@ -7,6 +7,10 @@ Our project uses the following dataset:
 [FIFA 22 Complete Player Dataset](https://www.kaggle.com/datasets/stefanoleone992/fifa-22-complete-player-dataset)  
 We only use all Men Player Data across all years to conduct the projects. The **data** folder contains all data we use.
 
+# Project Overview
+
+This project aims to predict the overall value of each player based on their skill sets using machine learning models. We build two versions of the model: one in Apache Spark and the other in PyTorch. For each framework, two different classifiers/regressors are used. The selected models are then tuned for optimal performance and tested for accuracy.
+
 # Dataset Schema
 
 ### Added columns
@@ -189,42 +193,36 @@ We only use all Men Player Data across all years to conduct the projects. The **
 
 # Machine Learning Model for Player Value Prediction
 
-## Project Overview
-
-This project aims to predict the overall value of each player based on their skill sets using machine learning models. We build two versions of the model: one in Apache Spark and the other in PyTorch. For each framework, two different classifiers/regressors are used. The selected models are then tuned for optimal performance and tested for accuracy.
-
 ## Dataset
 
 (Briefly describe the dataset used, including its source, size, and main features.)
 
 ## Feature Engineering
 
-### 1. Feature Type Casting
+### Feature Type Casting
 
 - Conversion of skill feature columns to numeric values after extracting them from string types.
 - Handling of non-numeric values and errors.
 
-### 2. Column Dropping
+### Column Dropping
 
 - Filling missing values in specified columns with their mean values.
 
-### 3. Vector Assembling
+### Vector Assembling
 
 - Consolidation of feature columns for model input.
 
-### 4. Feature Scaling
+### Feature Scaling
 
 - Application of StandardScaler for normalizing feature values.
 
-### 5. PyTorch Tensor Conversion
+### PyTorch Tensor Conversion
 
 - Conversion of scaled feature data to PyTorch tensors for model input.
 
-## Models
+## Models and Reasons for Selection
 
 ### Linear Regression
-
-#### Reasons for Selection
 
 - Linear regression is a fundamental and widely used method for regression problems, providing a baseline for performance comparison.
 - Its simplicity allows for a clear understanding of how input features affect the predicted player value.
@@ -237,7 +235,7 @@ This project aims to predict the overall value of each player based on their ski
 
 ## Spark Version
 
-### 1. Linear Regression Model
+### Linear Regression Model
 
 The Spark version of our project includes a Linear Regression Model implemented using PySpark's MLlib. This model aims to predict player values based on their skillsets using linear regression techniques.
 
@@ -283,7 +281,7 @@ The best model performance was achieved with the following parameters:
 - Increasing the `maxIter` beyond 10 did not significantly improve the RMSE for `regParam` of 0.01.
 - Higher values of `regParam` (0.1 and 1.0) resulted in a slight increase in RMSE, indicating that too much regularization may not be beneficial for this specific model and data.
 
-### 2. Gradient-Boosted Tree (GBT)
+### Gradient-Boosted Tree (GBT)
 
 In addition to linear regression, we also implement a Gradient-Boosted Tree (GBT) model, which is a more complex approach suitable for capturing non-linear relationships in the data.
 
