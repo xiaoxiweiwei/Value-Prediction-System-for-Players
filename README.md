@@ -193,10 +193,6 @@ This project aims to predict the overall value of each player based on their ski
 
 # Machine Learning Model for Player Value Prediction
 
-## Dataset
-
-(Briefly describe the dataset used, including its source, size, and main features.)
-
 ## Feature Engineering
 
 ### Feature Type Casting
