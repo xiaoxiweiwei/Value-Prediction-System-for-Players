@@ -387,4 +387,77 @@ The best performance was achieved with the following settings:
 
 #### Analysis
 
-- The lowest RMSE was found with
+- The lowest RMSE was found with - a **`regParam`** of 0.01 and **`maxIter`** of 50, indicating that minimal regularization combined with a higher number of iterations is most effective for this model.
+- The RMSE did not significantly change with different **`maxIter`** values when **`regParam`** was set to 0.01, suggesting a plateau in performance improvement beyond a certain number of iterations.
+- Higher **`regParam`** values, especially 1.0, led to a substantial increase in RMSE, indicating that excessive regularization negatively impacted the model's performance.
+
+### **Simple Neural Network for Regression**
+
+In addition to the Linear Regression Model, we implemented a Simple Neural Network for regression in PyTorch, designed to capture complex, non-linear relationships in the data. This model serves as an alternative to Gradient-Boosted Trees (GBT) which are not natively supported in PyTorch.
+
+### Model Architecture
+
+- The neural network comprises two fully connected (**`nn.Linear`**) layers.
+- The first layer (fc1) transforms the input features to a hidden layer of specified size (**`hidden_size`**), allowing the model to learn intermediate representations of the data.
+- A Rectified Linear Unit (ReLU) activation function is applied after the first layer to introduce non-linearity, enabling the model to capture more complex patterns.
+- The second layer (fc2) reduces the hidden layer to a single output value, corresponding to the predicted player value.
+- **`hidden_size`** is a tunable hyperparameter, allowing experimentation with different model complexities.
+
+### Training Process
+
+- The model employs the Adam optimizer, known for its efficiency in handling sparse gradients and adaptive learning rate management.
+- Mean Squared Error Loss (MSELoss) is used during training, and the Root Mean Squared Error (RMSE) is calculated for validation, providing a clear measure of prediction accuracy.
+- The model is trained and validated over several epochs, with hyperparameters **`hidden_size`** and learning rate (**`lr`**) being tuned to find the optimal configuration.
+
+### Hyperparameter Tuning
+
+We applied a grid search strategy to explore different values for **`hidden_size`** and **`learning_rate`**. The ranges for these parameters were:
+
+- **`hidden_size`**: 64, 128, 256
+- **`learning_rate`**: 0.001, 0.01, 0.1
+
+### **Results**
+
+The outcomes of the hyperparameter tuning are as follows:
+
+| Hidden Size | Learning Rate | Validation RMSE |
+| --- | --- | --- |
+| 64 | 0.001 | 7.175284040940775 |
+| 64 | 0.01 | 7.087015567599116 |
+| 64 | 0.1 | 7.2106020289498405 |
+| 128 | 0.001 | 7.200681208490251 |
+| 128 | 0.01 | 7.320838622144751 |
+| 128 | 0.1 | 7.130534578014064 |
+| 256 | 0.001 | 7.122406677082852 |
+| 256 | 0.01 | 7.137579348710206 |
+| 256 | 0.1 | 7.521046274417156 |
+
+### **Optimal Parameters**
+
+The best results were obtained with the following settings:
+
+- **Best `hidden_size`**: 64
+- **Best `learning_rate`**: 0.01
+- **Best Validation RMSE**: 7.087015567599116
+
+### **Analysis**
+
+- The optimal performance was achieved with a **`hidden_size`** of 64 and a **`learning_rate`** of 0.01. This indicates that a relatively smaller hidden layer size combined with a moderate learning rate is the most effective for this dataset.
+- Increasing the **`hidden_size`** did not consistently improve performance, suggesting that a more complex model does not necessarily translate to better results for this task.
+- The learning rate of 0.01 seems to provide the right balance between convergence speed and stability in training.
+
+### 
+
+### Best Model Performance
+
+- For pyspark version, the LinearRegression model gets the best result of RMSE = 2.79 when the regularization parameter is set to 0.01 and max iteration equals to 10; GBT model produces the best validation result of RMSE = 1.44 when we set max depth as 6 and max iteration equals to 30
+- For pytorch version, the LinearRegression model reaches its best result of RMSE: 7.05 when regularization parameter equals to 0.01 and iteration is 50; since the pytorch couldn’t achieve GBT process, so we use a simple NN model instead, when setting the hidden size, learning rate as 64 and 0.01, it gets the best result of RMSE: 7.09
+
+## **Results and Analysis**
+
+- As GBT performs best among these models, we test it on test data set and get the test RMSE: 1.44
+
+## Compare of two models
+
+- **GBT**: It is a more complex model, consisting of an ensemble of decision trees built in a sequential manner. Each tree is built to correct the errors made by the previous ones, which allows GBT to capture complex, non-linear patterns in the data; it handles non-linear relationships due to its ensemble method and the nature of decision trees. Typically requires more computational resources and has longer training times due to the sequential nature of boosting. Offers more flexibility with various hyperparameters like tree depth, learning rate, and number of trees, but requires careful tuning.
+- **Linear Regression**: It is a simpler model, assuming a linear relationship between the independent variables and the dependent variable. It's best suited for datasets where this linear assumption holds true. Struggles with non-linear relationships unless the data is transformed or polynomial features are used. Faster to train and requires fewer computational resources due to its simpler nature.
