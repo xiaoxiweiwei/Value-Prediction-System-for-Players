@@ -455,3 +455,7 @@ The best results were obtained with the following settings:
 
 - **GBT**: It is a more complex model, consisting of an ensemble of decision trees built in a sequential manner. Each tree is built to correct the errors made by the previous ones, which allows GBT to capture complex, non-linear patterns in the data; it handles non-linear relationships due to its ensemble method and the nature of decision trees. Typically requires more computational resources and has longer training times due to the sequential nature of boosting. Offers more flexibility with various hyperparameters like tree depth, learning rate, and number of trees, but requires careful tuning.
 - **Linear Regression**: It is a simpler model, assuming a linear relationship between the independent variables and the dependent variable. It's best suited for datasets where this linear assumption holds true. Struggles with non-linear relationships unless the data is transformed or polynomial features are used. Faster to train and requires fewer computational resources due to its simpler nature.
+
+
+## Video URL of BOX
+https://cmu.box.com/s/y5r2j5fl7xdlbnbqutsv6fdoykwf1i1q
