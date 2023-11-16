@@ -186,7 +186,7 @@ This project aims to predict the overall value of each player based on their ski
   - Nullable: true
   - Description: These relate to mental aspects of the players.  
   
-- `goalkeeping_diving`, `goalkeeping_handling`, `goalkeeping_kicking`, `goalkeeping_positioning`, `goalkeeping_reflexes`, `goal`
+- `goalkeeping_diving`, `goalkeeping_handling`, `goalkeeping_kicking`, `goalkeeping_positioning`, `goalkeeping_reflexes`
   - Type: Integer
   - Nullable: true
   - Description:These relate to goal aspects of the players.
